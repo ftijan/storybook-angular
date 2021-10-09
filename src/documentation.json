@@ -252,7 +252,7 @@
         },
         {
             "name": "LinkComponent",
-            "id": "component-LinkComponent-72498babcad902907d44e95fc609a2af",
+            "id": "component-LinkComponent-3d197984e65f50e1706eaec0c353fb0b",
             "file": "src/app/components/link/link.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -268,21 +268,34 @@
                 "./link.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [
+            "inputsClass": [
                 {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12,
+                    "name": "color",
+                    "defaultValue": "'primary'",
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "\"primary\" | \"secondary\""
+                },
+                {
+                    "name": "href",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                },
+                {
+                    "name": "target",
+                    "defaultValue": "'_self'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\""
                 }
             ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -290,27 +303,27 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-link',\n  templateUrl: './link.component.html',\n  styleUrls: ['./link.component.scss']\n})\nexport class LinkComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-link',\n  templateUrl: './link.component.html',\n  styleUrls: ['./link.component.scss']\n})\nexport class LinkComponent {\n\n  @Input()\n  color: 'primary' | 'secondary' = 'primary';\n  \n  @Input()\n  href?: string;\n  \n  @Input()\n  target?: '_self' | '_blank' | '_parent' | '_top' = '_self';\n  \n  public get classes(): Array<string> {\n    return ['link', `${this.color}-link`];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".link {\r\n  text-decoration: none;\r\n  border-bottom: 1px dotted;\r\n  \r\n  @media screen and (min-width: 600px) {\r\n    font-size: 1.15em;\r\n  }\r\n}\r\n\r\n.primary-link {\r\n  color: #ff4785;\r\n  border-color: #ff4785;\r\n}\r\n\r\n.secondary-link {\r\n  color: #1ea7fd;\r\n  border-color: #1ea7fd;\r\n}",
                     "styleUrl": "./link.component.scss"
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 8
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "",
+                        "returnType": "Array<string>",
+                        "line": 19
+                    }
+                }
             },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<p>link works!</p>\n"
+            "templateData": "<a\n  [ngClass]=\"classes\"\n  [href]=\"href\"\n  [target]=\"target\"\n>\n  <ng-content></ng-content>\n</a>"
         },
         {
             "name": "PageComponent",
@@ -643,7 +656,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<LinkComponent>",
-                "defaultValue": "() => ({\r\n  component: LinkComponent,\r\n  template: `<app-link></app-link>`,\r\n})"
+                "defaultValue": "() => ({\r\n  component: LinkComponent,\r\n  props: {\r\n    // we use the select knob to set the color value\r\n    color: select('Color', ['primary', 'secondary'] , 'primary'),\r\n    \r\n    // we use the text knob to set the ngContent value\r\n    content: text('Text', 'Visit Storybooks'),\r\n    \r\n    href: 'https://storybook.js.org/',\r\n    target: '_blank',\r\n  },\r\n  template: `\r\n    <app-link\r\n        [color]=\"color\"\r\n        [href]=\"href\"\r\n        [target]=\"target\"\r\n      >\r\n        {{ content }}\r\n    </app-link>`,\r\n})"
             }
         ],
         "functions": [],
@@ -669,7 +682,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<LinkComponent>",
-                    "defaultValue": "() => ({\r\n  component: LinkComponent,\r\n  template: `<app-link></app-link>`,\r\n})"
+                    "defaultValue": "() => ({\r\n  component: LinkComponent,\r\n  props: {\r\n    // we use the select knob to set the color value\r\n    color: select('Color', ['primary', 'secondary'] , 'primary'),\r\n    \r\n    // we use the text knob to set the ngContent value\r\n    content: text('Text', 'Visit Storybooks'),\r\n    \r\n    href: 'https://storybook.js.org/',\r\n    target: '_blank',\r\n  },\r\n  template: `\r\n    <app-link\r\n        [color]=\"color\"\r\n        [href]=\"href\"\r\n        [target]=\"target\"\r\n      >\r\n        {{ content }}\r\n    </app-link>`,\r\n})"
                 }
             ],
             "src/test.ts": [
@@ -871,7 +884,7 @@
                 "linktype": "component",
                 "name": "LinkComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
